@@ -9,3 +9,9 @@ forward the record start on to each of the PIs.  This would then be able to reco
 for a small band on a tight budget, where each band member has their own 2 in 2 out small A/D device.
 
 Please note, this is experimental and very early in development at this stage.
+
+## Dependancies
+* From pypi
+    * JACK-Client >= 0.5.4
+    * pyliblo >= 0.10.0
+    * pyyaml >= 6.0.1
