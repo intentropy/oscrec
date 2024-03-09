@@ -15,3 +15,4 @@ Please note, this is experimental and very early in development at this stage.
     * JACK-Client >= 0.5.4
     * pyliblo >= 0.10.0
     * pyyaml >= 6.0.1
+    * sounddevice >= 0.4.6
