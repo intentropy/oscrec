@@ -37,7 +37,7 @@ class OSCServer( ServerThread ):
         """Start jack transport"""
         pass
 
-    def stop( self , *args , **kwargs )
+    def stop( self , *args , **kwargs ):
         """Stop jack transport"""
         pass
 
