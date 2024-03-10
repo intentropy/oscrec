@@ -14,10 +14,10 @@ from os     import system
 from sys    import argv
 from yaml   import safe_load
 from liblo  import ServerThread
-from jack   import client
+from jack   import Client
 
 class OSCServer( ServerThread ):
-    def __init__( self ):
+    def __init__( self , jack_client: Client ):
         super().init( port )
         """NOTE:
             Any message to the path should be fine"""
