@@ -14,10 +14,11 @@ if __name__ == '__main__':
     _client_name = "OSCRec"
     with Client( _client_name ) as client:
 
-        server_data = {
+        client_data = {
             "blocksize": client.blocksize,
-            "frame_time": client.frame_time,
             "sample_rate": client.samplerate,
+            "status": client.status,
+            "uuid":  client.uuid,
             }
 
         # Get all interface recording inputs (out ports)
@@ -42,7 +43,7 @@ if __name__ == '__main__':
                 if inport_name.endswith( outport_name ):
                     client.connect( outport , inport )
 
-        print( safe_dump( server_data ) )
+        print( safe_dump( client_data ) )
         print( outports )
         print( inports )
         test_hold()
