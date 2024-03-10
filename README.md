@@ -32,6 +32,8 @@ OSC to start and stop the transport.
 
 Also add in an option to rsync or scp the recorings somewhere.
 
+Open a seperate jack_capture per input device.  ( Thread the system() ? )
+
 Have a configuration option for the file name. 
 
 ### From manpage

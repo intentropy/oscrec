@@ -13,6 +13,36 @@ Description:
 from os     import system
 from sys    import argv
 from yaml   import safe_load
+from liblo  import ServerThread
+from jack   import client
+
+class OSCServer( ServerThread ):
+    def __init__( self ):
+        super().init( port )
+        """NOTE:
+            Any message to the path should be fine"""
+        # Start jack transport and record
+        self.add_method( "oscrec/start" , None , self.start )
+        # Stop jack transport, then export recordings
+        self.add_method( "oscrec/stop" , None , self.stop )
+
+    def __enter__( self ):
+        self.start()
+
+    def __exit__( self , *exc ):
+        self.stop()
+        self.free()
+
+    def start( self , *args , **kwargs):
+        """Start jack transport"""
+        pass
+
+    def stop( self , *args , **kwargs )
+        """Stop jack transport"""
+        pass
+
+
+
 
 if __name__ == '__main__':
     # Load config from arg 1
