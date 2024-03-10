@@ -15,25 +15,16 @@ Please note, this is experimental and very early in development at this stage.
     * JACK-Client >= 0.5.4
     * pyliblo >= 0.10.0
     * pyyaml >= 6.0.1
-    * scipy 1.12.0
-    * numpy 1.26.4
-
+* System
+    * jack_capture 
+    
+    
+    
 
 ## Notes:
 Instead of writting the capture, try making an OSC Wrapper around jack_capture
+    
+    -jt, --jack-transport
+              Start program, but do not start recording until jack transport has started rolling.
+              When jack transport stops, the recording is stopped, and the program ends.
 
-
-SciPy has a method for writting an WAV file
-
-https://stackoverflow.com/questions/10357992/how-to-generate-audio-from-a-numpy-array
-```
-import numpy as np
-from scipy.io.wavfile import write
-
-rate = 44100
-data = np.random.uniform(-1, 1, rate) # 1 second worth of random samples between -1 and 1
-scaled = np.int16(data / np.max(np.abs(data)) * 32767)
-write('test.wav', rate, scaled)
-```
-
-inport.array may be the data you are looking for for recording from the interface
