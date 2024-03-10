@@ -2,7 +2,7 @@
 """OSCRec"""
 
 from jack   import Client
-
+from yaml   import safe_dump
 from time   import sleep
 
 def test_hold():
@@ -42,5 +42,7 @@ if __name__ == '__main__':
                 if inport_name.endswith( outport_name ):
                     client.connect( outport , inport )
 
-        print( outports , inports )        
+        print( safe_dump( server_data ) )
+        print( outports )
+        print( inports )
         test_hold()
