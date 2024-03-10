@@ -19,15 +19,22 @@ Please note, this is experimental and very early in development at this stage.
     * jack_capture 
     
     
-    
-
-## Notes:
-Instead of writting the capture, try making an OSC Wrapper around jack_capture
-
 
 
 ## Jack Capture
-### Notes from manpage
+### Notes
+This should just be an OSC wrapper for jack_capture
+
+`-p`  specifies port, use jack-client to list all the available outports, and this option when running jack_capture to auto connect them.
+
+You will need to start and stop the recording usinf `-jt` the jack transport via jack-client.  This will essentially start up jack_capture, then listen for
+OSC to start and stop the transport.
+
+Also add in an option to rsync or scp the recorings somewhere.
+
+Have a configuration option for the file name. 
+
+### From manpage
 ```
 -p, --port port
             is  by  default  set  to the two first physical outputs. The "port" argument can be
@@ -38,4 +45,7 @@ Instead of writting the capture, try making an OSC Wrapper around jack_capture
 -jt, --jack-transport
             Start program, but do not start recording until jack transport has started rolling.
             When jack transport stops, the recording is stopped, and the program ends.
+
+-fn, --filename
+              Specify filename. (It's usually easier to set last argument instead)
 ```
