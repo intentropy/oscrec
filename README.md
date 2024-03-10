@@ -20,6 +20,9 @@ Please note, this is experimental and very early in development at this stage.
 
 
 ## Notes:
+Instead of writting the capture, try making an OSC Wrapper around jack_capture
+
+
 SciPy has a method for writting an WAV file
 
 https://stackoverflow.com/questions/10357992/how-to-generate-audio-from-a-numpy-array
