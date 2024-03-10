@@ -23,8 +23,19 @@ Please note, this is experimental and very early in development at this stage.
 
 ## Notes:
 Instead of writting the capture, try making an OSC Wrapper around jack_capture
-    
-    -jt, --jack-transport
-              Start program, but do not start recording until jack transport has started rolling.
-              When jack transport stops, the recording is stopped, and the program ends.
 
+
+
+## Jack Capture
+### Notes from manpage
+```
+-p, --port port
+            is  by  default  set  to the two first physical outputs. The "port" argument can be
+            specified more than once.
+
+
+    
+-jt, --jack-transport
+            Start program, but do not start recording until jack transport has started rolling.
+            When jack transport stops, the recording is stopped, and the program ends.
+```
