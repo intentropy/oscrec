@@ -19,6 +19,7 @@ from jack   import Client
 class OSCServer( ServerThread ):
     def __init__( self , jack_client: Client ):
         super().init( port )
+        self.jack_client = jack_client
         """NOTE:
             Any message to the path should be fine"""
         # Start jack transport and record
@@ -27,6 +28,7 @@ class OSCServer( ServerThread ):
         self.add_method( "oscrec/stop" , None , self.stop )
 
     def __enter__( self ):
+        """Start the liblo server, and thread a jack_capture per system outport"""
         self.start()
 
     def __exit__( self , *exc ):
