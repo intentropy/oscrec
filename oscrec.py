@@ -8,6 +8,9 @@ Description:
     It will also rsync files to a destination after recording
 
     The only arg it takes is it's configuration file, written in yaml.
+
+Notes:
+    Make methods to run outside of with
 """
 
 from os     import system
@@ -16,9 +19,9 @@ from yaml   import safe_load
 from liblo  import ServerThread
 from jack   import Client
 
-class OSCServer( ServerThread ):
-    def __init__( self , jack_client: Client ):
-        super().init( port )
+class OSCRec( ServerThread , Client ):
+    def __init__( self , listen_port ):
+        super().init( listen_port )
         self.jack_client = jack_client
         """NOTE:
             Any message to the path should be fine"""
@@ -26,14 +29,29 @@ class OSCServer( ServerThread ):
         self.add_method( "oscrec/start" , None , self.start )
         # Stop jack transport, then export recordings
         self.add_method( "oscrec/stop" , None , self.stop )
+        # Shut everything down
+        self.add_method( "oscrec/exit" , None , self.exit )
 
     def __enter__( self ):
         """Start the liblo server, and thread a jack_capture per system outport"""
+        # Start liblo server
         self.start()
 
+        # Start jack captures
+        self.outports = {}
+        for outport in self.get_ports():
+            if outport.is_output:
+                self.outports.update( { outport.name , outport } )
+        
+
     def __exit__( self , *exc ):
+        """Terminate the threaded jack captures and shutdown liblo server"""
+        # Stop jack captures
+
+        # Stop liblo server
         self.stop()
         self.free()
+
 
     def start( self , *args , **kwargs):
         """Start jack transport"""
@@ -54,4 +72,8 @@ if __name__ == '__main__':
     with open( config_file ) as file:
         config = safe_load( file.read() )
 
-    print( config )
+    liblo_port = config.get( "liblo" , {} ).get( "port" , 9000 )
+
+    with OSCRec( liblo_port ) as oscrec:
+        while True:
+            sleep( 1 )

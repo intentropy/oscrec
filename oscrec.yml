@@ -1,15 +1,9 @@
 ## Configuration file
-
-# Device name, maybe just label with hostname
-device:
-  name: foobar
-
 # After recording scp the file where it is needed
-scp:
+export:
   host: 192.168.0.2
   port: 22
   id: ~/.ssh/id_rsa.pub
-
 # Conmfig for OSC Server
-osc:
+liblo:
   port: 9999
